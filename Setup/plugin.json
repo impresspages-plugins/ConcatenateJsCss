@@ -1,0 +1,15 @@
+{
+    "title": "Concatenate assets",
+    "version": "1.00",
+    "name": "ConcatenateJsCss",
+    "description": "Concatenate multiple JavaScript and CSS files into one file for faster loading.",
+    "author": "ImpressPages",
+    "options": [
+        {
+            "label": "Disable in admin",
+            "name": "disableInAdmin",
+            "type": "Checkbox",
+            "default": "1"
+        }
+    ]
+}
