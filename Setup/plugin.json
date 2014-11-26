@@ -1,6 +1,6 @@
 {
     "title": "Concatenate assets",
-    "version": "1.00",
+    "version": "1.01",
     "name": "ConcatenateJsCss",
     "description": "Concatenate multiple JavaScript and CSS files into one file for faster loading.",
     "author": "ImpressPages",

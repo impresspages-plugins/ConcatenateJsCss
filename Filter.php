@@ -18,7 +18,7 @@ class Filter
 {
     public static function ipCss($cssFiles)
     {
-        if (ipGetOption('ConcatenateJsCss.disableInAdmin') && ipAdminId()) {
+        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId()) {
             return $cssFiles;
         }
 
@@ -46,7 +46,7 @@ class Filter
 
     public static function ipJs($jsFiles)
     {
-        if (ipGetOption('ConcatenateJsCss.disableInAdmin') && ipAdminId()) {
+        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId()) {
             return $jsFiles;
         }
 
