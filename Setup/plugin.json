@@ -9,7 +9,7 @@
             "label": "Disable in admin",
             "name": "disableInAdmin",
             "type": "Checkbox",
-            "default": "1"
+            "default": 1
         }
     ]
 }

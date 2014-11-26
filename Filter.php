@@ -50,13 +50,14 @@ class Filter
             return $jsFiles;
         }
 
+        $tinymceUrl = ipFileUrl('Ip/Internal/Core/assets/js/tiny_mce');
 
         $answer = array(
             'concatenateJsCss_tinymce_fix' => array(
                 'type' => 'content',
                 'value' => "var tinyMCEPreInit = {
     suffix: '.min',
-    base: ip.baseUrl + 'Ip/Internal/Core/assets/js/tiny_mce',
+    base: '" . $tinymceUrl . "',
     query: ''
 };",
                 'attributes' => array(),
