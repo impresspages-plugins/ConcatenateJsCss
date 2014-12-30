@@ -50,7 +50,7 @@ class Model
                     $urlContent .= ';';
                 }
 
-                $concatenated .= "\n" . '//$url' . "\n" . $urlContent;
+                $concatenated .= "\n" . '//' . $url . "\n" . $urlContent;
             }
 
             if (!is_dir(ipFile('file/concatenate'))) {
