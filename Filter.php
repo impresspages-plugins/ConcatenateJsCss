@@ -17,7 +17,7 @@ namespace Plugin\ConcatenateJsCss;
 class Filter
 {
     public static function ipCss($cssFiles)
-    {
+    {return $cssFiles;
         if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->get('ConcatenateJsCss', 'concatenationInProgress') > time()) {
             return $cssFiles;
         }
@@ -51,6 +51,7 @@ class Filter
 
     public static function ipJs($jsFiles)
     {
+        return $jsFiles;
         if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId()) {
             return $jsFiles;
         }
