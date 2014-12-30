@@ -44,13 +44,14 @@ class Model
 
                 if ($ext == 'css') {
                     $urlContent = self::replaceUrls($url, $urlContent);
+                    $concatenated .= "\n" . '/*' . $url . "*/\n" . $urlContent;
                 }
 
                 if ($ext == 'js') {
                     $urlContent .= ';';
+                    $concatenated .= "\n" . '//' . $url . "\n" . $urlContent;
                 }
 
-                $concatenated .= "\n" . '//' . $url . "\n" . $urlContent;
             }
 
             if (!is_dir(ipFile('file/concatenate'))) {
