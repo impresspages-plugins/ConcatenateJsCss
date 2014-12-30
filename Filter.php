@@ -17,7 +17,7 @@ namespace Plugin\ConcatenateJsCss;
 class Filter
 {
     public static function ipCss($cssFiles)
-    {return $cssFiles;
+    {
         if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->get('ConcatenateJsCss', 'concatenationInProgress') > time()) {
             return $cssFiles;
         }
@@ -51,10 +51,11 @@ class Filter
 
     public static function ipJs($jsFiles)
     {
-        return $jsFiles;
-        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId()) {
+        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->get('ConcatenateJsCss', 'concatenationInProgress') > time()) {
             return $jsFiles;
         }
+
+        ipStorage()->set('ConcatenateJsCss', 'concatenationInProgress', time() + 60); //if some CSS / JS links to the website itself, we may have an infinite recursion. So we have to disable ourself during the concatenation
 
         $tinymceUrl = ipFileUrl('Ip/Internal/Core/assets/js/tiny_mce');
 
@@ -94,6 +95,9 @@ class Filter
         if (!empty($chunk)) {
             $answer = array_merge($answer, self::concatenateChunk($chunk));
         }
+
+        ipStorage()->remove('ConcatenateJsCss', 'concatenationInProgress');
+
         return $answer;
     }
 
