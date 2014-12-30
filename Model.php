@@ -94,7 +94,13 @@ class Model
             ipLog()->debug('ConcatenateJsCss: download asset error', array('url' => $url, 'error' => $error));
             return false;
         }
+
+        $info = curl_getinfo($ch);
         curl_close ($ch);
+
+        if (empty($info['http_code']) || $info['http_code'] != '200') {
+            return '';
+        }
 
         return $content;
     }
