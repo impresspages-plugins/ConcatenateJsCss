@@ -18,7 +18,7 @@ class Filter
 {
     public static function ipCss($cssFiles)
     {
-        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->getcd /v('ConcatenateJsCss', 'concatenationInProgress') > time()) {
+        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->get('ConcatenateJsCss', 'concatenationInProgress') > time()) {
             return $cssFiles;
         }
 
