@@ -18,9 +18,11 @@ class Filter
 {
     public static function ipCss($cssFiles)
     {
-        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId()) {
+        if (ipGetOption('ConcatenateJsCss.disableInAdmin', 1) && ipAdminId() || ipStorage()->set('ConcatenateJsCss', 'concatenationInProgress') > time()) {
             return $cssFiles;
         }
+
+        ipStorage()->set('ConcatenateJsCss', 'concatenationInProgress', time() + 60); //if some CSS / JS links to the website itself, we may have an infinite recursion. So we have to disable ourself during the concatenation
 
         $urls = array();
         foreach ($cssFiles as &$file) {
@@ -33,6 +35,9 @@ class Filter
             //concatenation failed. Return original CSS files
             return $cssFiles;
         }
+
+        ipStorage()->remove('ConcatenateJsCss', 'concatenationInProgress');
+
 
         return array(
             $concatenatedCss => array(
